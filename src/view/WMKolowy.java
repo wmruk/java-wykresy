@@ -38,18 +38,18 @@ public class WMKolowy extends javax.swing.JPanel {
                 kolory[i] = new Color(losowa.nextInt(255), losowa.nextInt(255), losowa.nextInt(255));
             }
 
-            int width = getWidth() - WMData.getMargines() * 2;
-            int height = getHeight() - WMData.getMargines() * 3;
-            int suma = 0;
+            int w = this.getWidth() - WMData.getMargines() * 2;
+            int h = this.getHeight() - WMData.getMargines() * 3;
+            int s = 0;
             for (int i : WMFile.odczyt(WMData.getSciezka())) {
-                suma += i;
+                s += i;
             }
-            double x = 360.0 / suma;
-            int poczatek = 0;
+            double skala = 360.0 / s;
+            int start = 0;
             for (int i = 0; i < WMFile.odczyt(WMData.getSciezka()).length; i++) {
                 g.setColor(kolory[i]);
-                g.fillArc(WMData.getMargines(), WMData.getMargines() * 2, width, height, poczatek, (int) ((WMFile.odczyt(WMData.getSciezka()))[i] * poczatek));
-                poczatek += (int) (WMFile.odczyt(WMData.getSciezka())[i] * x);
+                g.fillArc(WMData.getMargines(), WMData.getMargines() * 2, w, h, start, (int) ((WMFile.odczyt(WMData.getSciezka()))[i] * skala));
+                start += (int) (WMFile.odczyt(WMData.getSciezka())[i] * skala);
             }
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {

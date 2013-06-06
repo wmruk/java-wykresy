@@ -5,8 +5,10 @@
 package view;
 
 import java.awt.Color;
+import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import logic.*;
 
 /**
@@ -15,40 +17,13 @@ import logic.*;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    //private WMFile plik = new WMFile();
-    //private int classMultiplicity[] = {12, 34, 10, 2, 115, 115, 20, 45, 32, 54, 56, 33, 56, 175};
-    //private int margin;
-    //private int stan;
-
-    /*
-     @Override
-     public void paint(Graphics g) {
-     if (stan == 0) {
-     margin = 20;
-     super.paint(g);
-     int classWidth = (jPanel1.getWidth() - 2 * margin) / classMultiplicity.length;
-     int[] rob = Arrays.copyOf(this.classMultiplicity, this.classMultiplicity.length);
-     Arrays.sort(rob);
-     int freeSpace = jPanel1.getHeight() - 2 * margin;
-     int max = rob[rob.length - 1];
-     double resize = (double) freeSpace / max - 0.002;
-     for (int i = 0; i < classMultiplicity.length; i++) {
-     g.setColor(Color.YELLOW);
-     g.fillRect(i * classWidth + margin, (int) (getHeight() - classMultiplicity[i] * resize - margin), classWidth, (int) (classMultiplicity[i] * resize));
-     g.setColor(Color.black);
-     g.drawRect(i * classWidth + margin, (int) (getHeight() - classMultiplicity[i] * resize - margin), classWidth, (int) (classMultiplicity[i] * resize));
-     }
-     }
-     }
-
-     */
     /**
      * Creates new form MainFrame
      */
     private String sciezka = "D:\\Magisterka\\java-piatek-projekt\\src\\data\\dane.txt";
+    private JFileChooser otworzPlik = new JFileChooser();
 
     public MainFrame() {
-
 
         initComponents();
         WMData.setSciezka(sciezka);
@@ -56,7 +31,6 @@ public class MainFrame extends javax.swing.JFrame {
         jInternalFrame1.hide();
         jInternalFrame2.hide();
         jInternalFrame3.hide();
-
 
         //Graphics g = jInternalFrame1.getGraphics();
         //paint(g);
@@ -354,8 +328,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        JFileChooser chose = new JFileChooser();
-        chose.showOpenDialog(null);            
+
+        otworzPlik.showOpenDialog(null);
+        File plik = otworzPlik.getSelectedFile();
+        WMData.setSciezka(plik.getAbsolutePath());
+        repaint();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
