@@ -5,10 +5,12 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import logic.*;
 
 /**
@@ -31,6 +33,10 @@ public class MainFrame extends javax.swing.JFrame {
         jInternalFrame1.hide();
         jInternalFrame2.hide();
         jInternalFrame3.hide();
+        jButton1.setVisible(false);
+        jButton3.setVisible(false);
+        jButton2.setVisible(false);
+                
 
         //Graphics g = jInternalFrame1.getGraphics();
         //paint(g);
@@ -62,11 +68,13 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -211,6 +219,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem9.setLabel("Zamknij");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
         jMenuBar2.add(jMenu3);
 
         jMenu5.setActionCommand("Edycja");
@@ -247,6 +263,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem7);
+
+        jMenuItem8.setLabel("Wybierz kolor");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
 
         jMenuBar2.add(jMenu5);
 
@@ -332,8 +356,26 @@ public class MainFrame extends javax.swing.JFrame {
         otworzPlik.showOpenDialog(null);
         File plik = otworzPlik.getSelectedFile();
         WMData.setSciezka(plik.getAbsolutePath());
+        jButton1.setVisible(true);
+        jButton3.setVisible(true);
+        jButton2.setVisible(true);
         repaint();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jMenuItem8.addActionListener((
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent event){
+                        WMData.setKolor(JColorChooser.showDialog(null, "Wybierz kolor", WMData.getKolor()));
+                        repaint();
+                    }
+                }
+                ));
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,6 +434,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
